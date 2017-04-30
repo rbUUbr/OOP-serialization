@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<MusicDisc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GenreOfMusic>1</GenreOfMusic>
+</MusicDisc>

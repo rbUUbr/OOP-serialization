@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
 namespace Serialization
 {
-    [Serializable]
     public abstract class Item
     {
         private string name;
@@ -14,17 +13,12 @@ namespace Serialization
         private int quality;
         private int count;
         private string type;
+        private int genre;
         private int yearOfCreate;
         private DateTime publishDate;
-        public Item(string name, float cost, int quality, int count, string type, int yearOfCreate, DateTime publishDate)
+        enum GenreOfItem { comedy, action, thriller, horror, cartoon, musicle };
+        public Item()
         {
-            this.name = name;
-            this.cost = cost;
-            this.quality = quality;
-            this.count = count;
-            this.type = type;
-            this.yearOfCreate = yearOfCreate;
-            this.publishDate = publishDate;
         }
         public string Name
         {
@@ -32,64 +26,88 @@ namespace Serialization
             set { name = value; }
         }
 
+        public int Genre
+        {
+            get
+            {
+                return genre;
+            }
+            set
+            {
+                genre = value;
+            }
+        }
+
         public float Cost
         {
-            get {
+            get
+            {
                 return cost;
             }
-            set {
+            set
+            {
                 cost = value;
             }
         }
 
         public int Quality
         {
-            get {
+            get
+            {
                 return quality;
             }
-            set {
+            set
+            {
                 quality = value;
             }
         }
 
         public int Count
         {
-            get {
+            get
+            {
                 return count;
             }
-            set {
+            set
+            {
                 count = value;
             }
         }
 
         public string Type
         {
-            get {
+            get
+            {
                 return type;
             }
-            set {
+            set
+            {
                 type = value;
             }
         }
 
-        public string MusicQuality
+        public int YearOfCreate
         {
-            get { return musicQuality; }
-            set { musicQuality = value; }
+            get
+            {
+                return yearOfCreate;
+            }
+            set
+            {
+                yearOfCreate = value;
+            }
         }
 
-        public int TrackCount
+        public DateTime PublishDate
         {
-            get { return trackCount; }
-            set { trackCount = value; }
+            get
+            {
+                return publishDate;
+            }
+            set
+            {
+                publishDate = value;
+            }
         }
-
-        public int CdCount
-        {
-            get { return cdCount; }
-            set { cdCount = value; }
-        }
-
     }
-}
 }
