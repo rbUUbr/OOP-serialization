@@ -10,7 +10,7 @@ namespace Serialization
     [Serializable]
     public class MusicDisc : CypherItem
     {
-        enum GenreOfMusic { bluzz, raggy , rap, rock, metal };
+        enum GenreOfItem { bluzz, raggy , rap, rock, metal };
         public MusicDisc() 
         {
         }

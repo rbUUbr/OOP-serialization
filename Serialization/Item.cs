@@ -16,9 +16,19 @@ namespace Serialization
         private int genre;
         private int yearOfCreate;
         private DateTime publishDate;
-        enum GenreOfItem { comedy, action, thriller, horror, cartoon, musicle };
+        enum GenreOfItem {};
         public Item()
         {
+        }
+        public Item(string name, float cost, int quality, int genre, int count, int yearOfCreate, DateTime publishDate)
+        {
+            this.Name = name;
+            this.Cost = cost;
+            this.Quality = quality;
+            this.Count = count;
+            this.Genre = genre;
+            this.YearOfCreate = yearOfCreate;
+            this.PublishDate = publishDate;
         }
         public string Name
         {

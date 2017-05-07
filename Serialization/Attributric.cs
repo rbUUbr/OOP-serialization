@@ -8,5 +8,18 @@ namespace Serialization
 {
     public abstract class Attributric : Item
     {
+        enum SizeOfItem { }
+        private int size;
+        public int Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+            }
+        }
     }
 }
