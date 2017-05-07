@@ -22,9 +22,12 @@ namespace Serialization
             MusicDisc Example = new MusicDisc();
             Example.Name = "123";
             VideoFilm Exm2 = new VideoFilm();
+            Game GameExmpl = new Game();
+            GameExmpl.Name = "DOOM";
             itemsList.Add(Example);
-            Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc) };
+            Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
             itemsList.Add(Exm2);
+            itemsList.Add(GameExmpl);
             XmlSerializer serializer = new XmlSerializer( typeof(List<Item>), ItemsTypes);
             using (FileStream fs = new FileStream("D://persons.xml", FileMode.OpenOrCreate))
             {

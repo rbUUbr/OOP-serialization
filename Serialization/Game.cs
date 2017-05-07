@@ -9,7 +9,11 @@ namespace Serialization
     [Serializable]
     public class Game : CypherItem
     {
-        enum GenreOfItem { bluzz, raggy, rap, rock, metal };
+        enum GenreOfItem { action, rpg, rts,strategy, fighting, racing };
+        public Game()
+        {
+
+        }
     }
 
 }

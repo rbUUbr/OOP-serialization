@@ -13,14 +13,5 @@ namespace Serialization
         public Sticker()
         {
         }
-        public Sticker(string name, float cost, int quality, int genre, int count, int size, int yearOfCreate, DateTime publishDate)
-        {
-            this.Name = name;
-            this.Cost = cost;
-            this.Quality = quality;
-            this.Count = count;
-            this.Genre = genre;
-
-        }
     }
 }
