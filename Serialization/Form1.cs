@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Serialization
@@ -33,7 +34,17 @@ namespace Serialization
             {
                 serializer.Serialize(fs, itemsList);
             }
+            deserialize();
             InitializeComponent();
+        }
+        public static void deserialize()
+        {
+            List<Item> itemsList = new List<Item>();
+            Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Item>), ItemsTypes);
+            XmlReader reader = XmlReader.Create("D://persons.xml");
+            itemsList = (List<Item>)serializer.Deserialize(reader);
         }
     }
 }
