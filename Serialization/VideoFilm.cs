@@ -13,17 +13,5 @@ namespace Serialization
         public VideoFilm()
         {
         }
-        private int genre;
-        public int Genre
-        {
-            get
-            {
-                return genre;
-            }
-            set
-            {
-                genre = value;
-            }
-        }
     }
 }
