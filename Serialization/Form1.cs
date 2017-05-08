@@ -46,5 +46,39 @@ namespace Serialization
             XmlReader reader = XmlReader.Create("D://persons.xml");
             itemsList = (List<Item>)serializer.Deserialize(reader);
         }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string File = ChooseFile();
+            }
+        }
+        public string ChooseFile()
+        {
+            openFileDialogSerialization.DefaultExt = "*.xml";
+            openFileDialogSerialization.Filter = "Файлы XML|*.xml";
+            if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                return openFileDialogSerialization.FileName;
+            else return null;
+
+        }
+
+        public string SaveToFile()
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.DefaultExt = "*.xml";
+            saveDialog.Filter = "Файлы XML|*.xml";
+            if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                return saveDialog.FileName;
+            else return null;
+
+        }
+
+        private void listBoxOfElements_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
