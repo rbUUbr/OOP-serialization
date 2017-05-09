@@ -9,8 +9,8 @@ namespace Serialization
     [Serializable]
     public class Sticker : Attributric
     {
-        enum GenreOfItem { cartoons, games, programming, films, anime, companies };
-        public Sticker()
+        enum SizeOfItem {   little, normal, big, verybig  }
+        public Sticker() : base()
         {
         }
     }

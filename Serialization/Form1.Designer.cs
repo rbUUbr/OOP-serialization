@@ -50,10 +50,11 @@
             this.labelЗPublishDate = new System.Windows.Forms.Label();
             this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.labelGenre = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelSize = new System.Windows.Forms.Label();
             this.comboBoxSize = new System.Windows.Forms.ComboBox();
             this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.labelCkass = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +95,7 @@
             this.десериализоватьToolStripMenuItem.Name = "десериализоватьToolStripMenuItem";
             this.десериализоватьToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.десериализоватьToolStripMenuItem.Text = "Десериализовать";
+            this.десериализоватьToolStripMenuItem.Click += new System.EventHandler(this.десериализоватьToolStripMenuItem_Click);
             // 
             // listBoxOfElements
             // 
@@ -192,6 +194,7 @@
             this.buttonCreate.TabIndex = 15;
             this.buttonCreate.Text = "Создать";
             this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // buttonDelete
             // 
@@ -235,14 +238,15 @@
             this.labelGenre.TabIndex = 20;
             this.labelGenre.Text = "Жанр";
             // 
-            // label1
+            // labelSize
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(184, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Размер";
+            this.labelSize.AutoSize = true;
+            this.labelSize.Location = new System.Drawing.Point(184, 86);
+            this.labelSize.Name = "labelSize";
+            this.labelSize.Size = new System.Drawing.Size(46, 13);
+            this.labelSize.TabIndex = 22;
+            this.labelSize.Text = "Размер";
+            this.labelSize.Visible = false;
             // 
             // comboBoxSize
             // 
@@ -251,6 +255,7 @@
             this.comboBoxSize.Name = "comboBoxSize";
             this.comboBoxSize.Size = new System.Drawing.Size(100, 21);
             this.comboBoxSize.TabIndex = 23;
+            this.comboBoxSize.Visible = false;
             // 
             // comboBoxClass
             // 
@@ -266,6 +271,7 @@
             this.comboBoxClass.Name = "comboBoxClass";
             this.comboBoxClass.Size = new System.Drawing.Size(100, 21);
             this.comboBoxClass.TabIndex = 25;
+            this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
             // 
             // labelCkass
             // 
@@ -276,15 +282,26 @@
             this.labelCkass.TabIndex = 24;
             this.labelCkass.Text = "Класс";
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(574, 310);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 26;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 393);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxClass);
             this.Controls.Add(this.labelCkass);
             this.Controls.Add(this.comboBoxSize);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelSize);
             this.Controls.Add(this.labelGenre);
             this.Controls.Add(this.comboBoxGenre);
             this.Controls.Add(this.labelЗPublishDate);
@@ -337,10 +354,11 @@
         private System.Windows.Forms.Label labelЗPublishDate;
         private System.Windows.Forms.ComboBox comboBoxGenre;
         private System.Windows.Forms.Label labelGenre;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.ComboBox comboBoxSize;
         private System.Windows.Forms.ComboBox comboBoxClass;
         private System.Windows.Forms.Label labelCkass;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
 

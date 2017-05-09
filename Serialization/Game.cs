@@ -10,7 +10,7 @@ namespace Serialization
     public class Game : CypherItem
     {
         enum GenreOfItem { action, rpg, rts,strategy, fighting, racing };
-        public Game()
+        public Game() : base()
         {
 
         }

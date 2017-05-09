@@ -12,23 +12,14 @@ namespace Serialization
         private float cost;
         private int quality;
         private int count;
-        private string type;
         private int genre;
         private int yearOfCreate;
         private DateTime publishDate;
+        public string InstanceID { get; set; }
         enum GenreOfItem {};
         public Item()
         {
-        }
-        public Item(string name, float cost, int quality, int genre, int count, int yearOfCreate, DateTime publishDate)
-        {
-            this.Name = name;
-            this.Cost = cost;
-            this.Quality = quality;
-            this.Count = count;
-            this.Genre = genre;
-            this.YearOfCreate = yearOfCreate;
-            this.PublishDate = publishDate;
+            InstanceID = Guid.NewGuid().ToString();
         }
         public string Name
         {
@@ -83,19 +74,6 @@ namespace Serialization
                 count = value;
             }
         }
-
-        public string Type
-        {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                type = value;
-            }
-        }
-
         public int YearOfCreate
         {
             get

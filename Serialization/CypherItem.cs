@@ -9,7 +9,7 @@ namespace Serialization
     [Serializable]
     public abstract class CypherItem : Item
     {
-        public CypherItem()
+        public CypherItem() : base()
         {
 
         }

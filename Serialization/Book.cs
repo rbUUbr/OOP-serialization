@@ -11,7 +11,7 @@ namespace Serialization
     public class Book : Item
     {
         enum GenreOfItem { adventure, story, roman, poetry, drama, scientific, fantasy };
-        public Book()
+        public Book() : base()
         {
 
         }

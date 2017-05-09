@@ -10,7 +10,7 @@ namespace Serialization
     public class VideoFilm : CypherItem
     {
         enum GenreOfItem { comedy, action, thriller, horror, cartoon, musicle };
-        public VideoFilm()
+        public VideoFilm() : base()
         {
         }
     }
