@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 namespace Serialization
 {
+    enum GenreOfItem { };
     public abstract class Item
     {
         private string name;
@@ -16,7 +17,6 @@ namespace Serialization
         private int yearOfCreate;
         private DateTime publishDate;
         public string InstanceID { get; set; }
-        enum GenreOfItem {};
         public Item()
         {
             InstanceID = Guid.NewGuid().ToString();

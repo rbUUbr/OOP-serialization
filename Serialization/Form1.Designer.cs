@@ -260,13 +260,6 @@
             // comboBoxClass
             // 
             this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Items.AddRange(new object[] {
-            "Game",
-            "MusicDisc",
-            "Sticker",
-            "TShirt",
-            "VideoFilm",
-            "Book"});
             this.comboBoxClass.Location = new System.Drawing.Point(507, 51);
             this.comboBoxClass.Name = "comboBoxClass";
             this.comboBoxClass.Size = new System.Drawing.Size(100, 21);

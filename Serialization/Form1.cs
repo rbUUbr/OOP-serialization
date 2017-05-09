@@ -24,6 +24,11 @@ namespace Serialization
         {
             this.itemsList = new List<Item>();
             InitializeComponent();
+            MainFactory mainFactory = new MainFactory();
+            foreach (KeyValuePair<string, object> f in mainFactory.FactoryDictionary)
+            {
+                comboBoxClass.Items.Add(f.Key);
+            }
         }
 
         public void ChangeVisible(bool value)
@@ -116,6 +121,8 @@ namespace Serialization
             textBoxQuality.Text = MyItem.Quality.ToString();
             dateTimePickerPublishDate.Value = MyItem.PublishDate;
             textBoxYearOfCreate.Text = MyItem.YearOfCreate.ToString();
+            comboBoxClass.SelectedIndex = comboBoxClass.Items.IndexOf(MyItem.GetType().Name);
+    
 
         }
         private void listBoxOfElements_SelectedIndexChanged(object sender, EventArgs e)
