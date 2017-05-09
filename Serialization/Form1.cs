@@ -18,6 +18,7 @@ namespace Serialization
         [XmlArray("itemsList")]
         private List<Item> itemsList;
         MainFactory mainFactory = new MainFactory();
+        TShirt ts = new TShirt();
         public int CurrentIndex;
         private Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
         public Form1()
@@ -29,20 +30,28 @@ namespace Serialization
             {
                 comboBoxClass.Items.Add(f.Key);
             }
+            
         }
 
         public void ChangeVisible(bool value)
         {
             labelSize.Visible = value;
-            comboBoxSize.Visible = value;
+            textBoxSize.Visible = value;
         }
         public static void Serialize(Type[] ItemsTypes, List<Item> itemsList, string FileName)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Item>), ItemsTypes);
-            using (FileStream fs = new FileStream(FileName, FileMode.Truncate))
+            try
             {
-                serializer.Serialize(fs, itemsList);
-                fs.Close();
+                using (FileStream fs = new FileStream(FileName, FileMode.Truncate))
+                {
+                    serializer.Serialize(fs, itemsList);
+                    fs.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Путь не может быть пустым!");
             }
         }
         public List<Item> Deserialize(Type[] ItemsTypes, string FileName)
@@ -59,7 +68,7 @@ namespace Serialization
                 Serialize(ItemsTypes, this.itemsList, FileName);
             
         }
-        public void SetValues(Item MyItem)
+        public void SetValues(dynamic MyItem)
         {
             MyItem.Name = textBoxName.Text;
             try
@@ -103,6 +112,12 @@ namespace Serialization
                 MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'имя'");
             }
             MyItem.PublishDate = dateTimePickerPublishDate.Value;
+            MyItem.Genre = textBoxGenre.Text;
+            if (textBoxSize.Visible == true)
+            {
+                MyItem.Size = textBoxSize.Text;
+            }
+
         }
         public string ChooseFile()
         {
@@ -118,11 +133,16 @@ namespace Serialization
             textBoxCost.Text = MyItem.Cost.ToString();
             textBoxCount.Text = MyItem.Count.ToString();
             textBoxName.Text = MyItem.Name;
+            textBoxGenre.Text = MyItem.Genre;
             textBoxQuality.Text = MyItem.Quality.ToString();
             dateTimePickerPublishDate.Value = MyItem.PublishDate;
             textBoxYearOfCreate.Text = MyItem.YearOfCreate.ToString();
             comboBoxClass.SelectedIndex = comboBoxClass.Items.IndexOf(MyItem.GetType().Name);
-    
+            if (textBoxSize.Visible == true)
+            {
+                Attributric a = (Attributric)MyItem;
+                textBoxSize.Text = a.Size;
+            }
 
         }
         private void listBoxOfElements_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,8 +212,15 @@ namespace Serialization
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            SetValues(itemsList.ElementAt(CurrentIndex));
-            listBoxOfElements.Items[CurrentIndex] = itemsList.ElementAt(CurrentIndex).Name;
+            try
+            {
+                SetValues(itemsList.ElementAt(CurrentIndex));
+                listBoxOfElements.Items[CurrentIndex] = itemsList.ElementAt(CurrentIndex).Name;
+            }
+            catch
+            {
+                MessageBox.Show("Эта функция предназначена для редактирования уже существующих элементов!");
+            }
         }
     }
 }

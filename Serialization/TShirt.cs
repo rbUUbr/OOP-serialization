@@ -9,7 +9,7 @@ namespace Serialization
     [Serializable]
     public class TShirt : Attributric
     {
-        enum SizeOfItem { S, XS, M, L, XL, XXL }
+        public enum SizeOfItem { S, XS, M, L, XL, XXL }
         public TShirt() : base()
         {
 

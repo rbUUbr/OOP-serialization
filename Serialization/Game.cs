@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Serialization
 {
     [Serializable]
+    public enum GenreOfItem { action, rpg, rts, strategy, fighting, racing };
     public class Game : CypherItem
     {
-        enum GenreOfItem { action, rpg, rts,strategy, fighting, racing };
         public Game() : base()
         {
 

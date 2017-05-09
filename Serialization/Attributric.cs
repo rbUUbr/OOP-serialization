@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
 namespace Serialization
 {
     public abstract class Attributric : Item
     {
-        enum SizeOfItem { }
-        enum GenreOfItem { cartoons, games, programming, films, anime, companies };
-        private int size;
-        public int Size
+        private string size;
+        [XmlAttribute("Size")]
+        public string Size
         {
             get
             {

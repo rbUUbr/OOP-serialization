@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using static System.Windows.Forms.ComboBox;
 namespace Serialization
 {
-    enum GenreOfItem { };
     public abstract class Item
     {
         private string name;
         private float cost;
         private int quality;
         private int count;
-        private int genre;
+        private string genre;
         private int yearOfCreate;
         private DateTime publishDate;
         public string InstanceID { get; set; }
@@ -27,7 +27,7 @@ namespace Serialization
             set { name = value; }
         }
 
-        public int Genre
+        public string Genre
         {
             get
             {

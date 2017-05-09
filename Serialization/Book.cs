@@ -10,7 +10,7 @@ namespace Serialization
     [Serializable]
     public class Book : Item
     {
-        enum GenreOfItem { adventure, story, roman, poetry, drama, scientific, fantasy };
+        public enum GenreOfItem { adventure, story, roman, poetry, drama, scientific, fantasy };
         public Book() : base()
         {
 

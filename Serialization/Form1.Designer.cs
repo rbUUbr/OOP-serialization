@@ -48,13 +48,13 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.dateTimePickerPublishDate = new System.Windows.Forms.DateTimePicker();
             this.labelЗPublishDate = new System.Windows.Forms.Label();
-            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.labelGenre = new System.Windows.Forms.Label();
             this.labelSize = new System.Windows.Forms.Label();
-            this.comboBoxSize = new System.Windows.Forms.ComboBox();
             this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.labelCkass = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.textBoxSize = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -221,14 +221,6 @@
             this.labelЗPublishDate.TabIndex = 18;
             this.labelЗPublishDate.Text = "Дата публикации";
             // 
-            // comboBoxGenre
-            // 
-            this.comboBoxGenre.FormattingEnabled = true;
-            this.comboBoxGenre.Location = new System.Drawing.Point(12, 316);
-            this.comboBoxGenre.Name = "comboBoxGenre";
-            this.comboBoxGenre.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxGenre.TabIndex = 19;
-            // 
             // labelGenre
             // 
             this.labelGenre.AutoSize = true;
@@ -247,15 +239,6 @@
             this.labelSize.TabIndex = 22;
             this.labelSize.Text = "Размер";
             this.labelSize.Visible = false;
-            // 
-            // comboBoxSize
-            // 
-            this.comboBoxSize.FormattingEnabled = true;
-            this.comboBoxSize.Location = new System.Drawing.Point(184, 102);
-            this.comboBoxSize.Name = "comboBoxSize";
-            this.comboBoxSize.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxSize.TabIndex = 23;
-            this.comboBoxSize.Visible = false;
             // 
             // comboBoxClass
             // 
@@ -285,18 +268,33 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // textBoxGenre
+            // 
+            this.textBoxGenre.Location = new System.Drawing.Point(12, 316);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxGenre.TabIndex = 27;
+            // 
+            // textBoxSize
+            // 
+            this.textBoxSize.Location = new System.Drawing.Point(184, 102);
+            this.textBoxSize.Name = "textBoxSize";
+            this.textBoxSize.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSize.TabIndex = 28;
+            this.textBoxSize.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 393);
+            this.Controls.Add(this.textBoxSize);
+            this.Controls.Add(this.textBoxGenre);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxClass);
             this.Controls.Add(this.labelCkass);
-            this.Controls.Add(this.comboBoxSize);
             this.Controls.Add(this.labelSize);
             this.Controls.Add(this.labelGenre);
-            this.Controls.Add(this.comboBoxGenre);
             this.Controls.Add(this.labelЗPublishDate);
             this.Controls.Add(this.dateTimePickerPublishDate);
             this.Controls.Add(this.buttonDelete);
@@ -345,13 +343,13 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.DateTimePicker dateTimePickerPublishDate;
         private System.Windows.Forms.Label labelЗPublishDate;
-        private System.Windows.Forms.ComboBox comboBoxGenre;
         private System.Windows.Forms.Label labelGenre;
         private System.Windows.Forms.Label labelSize;
-        private System.Windows.Forms.ComboBox comboBoxSize;
         private System.Windows.Forms.ComboBox comboBoxClass;
         private System.Windows.Forms.Label labelCkass;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxGenre;
+        private System.Windows.Forms.TextBox textBoxSize;
     }
 }
 
