@@ -19,13 +19,25 @@ namespace Serialization
         [XmlArray("itemsList")]
         private List<Item> itemsList;
         MainFactory mainFactory = new MainFactory();
+        Item plugin;
         public int CurrentIndex;
         private Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
         public Form1()
         {
             this.itemsList = new List<Item>();
             InitializeComponent();
-            MainFactory mainFactory = new MainFactory();
+            Assembly asm = Assembly.LoadFile(@"D:\Serialization\AdditionalClasses\bin\Debug\AdditionalClasses.dll");
+            foreach (Type t in asm.GetExportedTypes())
+            {
+                if (typeof(Item).IsAssignableFrom(t))
+                {
+                    plugin = (Item)asm.CreateInstance(t.FullName);
+                    mainFactory.FactoryDictionary.Add(plugin.GetType().Name, plugin);
+                    Array.Resize(ref this.ItemsTypes, this.ItemsTypes.Length + 1);
+                    this.ItemsTypes[this.ItemsTypes.Length - 1] = plugin.GetType();
+                }
+            }
+
             foreach (KeyValuePair<string, object> f in mainFactory.FactoryDictionary)
             {
                 comboBoxClass.Items.Add(f.Key);
@@ -139,7 +151,8 @@ namespace Serialization
             textBoxYearOfCreate.Text = MyItem.YearOfCreate.ToString();
             comboBoxClass.SelectedIndex = comboBoxClass.Items.IndexOf(MyItem.GetType().Name);
             Type MyType = mainFactory.ReturnTypeOfObject(MyItem);
-            string MyProperty = comboBox1.SelectedItem.ToString();
+            string[] PropertiesNames = GetNameOfFields();
+            string MyProperty = PropertiesNames[comboBox1.SelectedIndex].ToString();
             PropertyInfo a = MyType.GetProperty(MyProperty);
             textBoxSize.Text = a.GetValue(MyItem, null).ToString();
 
@@ -194,12 +207,13 @@ namespace Serialization
         {
             try
             {
+                string[] PropertiesNames = GetNameOfFields();
                 mainFactory.RequestedFactory = mainFactory.CheckFactory(comboBoxClass.SelectedItem.ToString());
                 SetValues(mainFactory.RequestedFactory);
                 itemsList.Add(mainFactory.RequestedFactory);
                 listBoxOfElements.Items.Add(mainFactory.RequestedFactory.Name);
                 Type MyType = mainFactory.ReturnTypeOfObject(mainFactory.RequestedFactory);
-                string MyProperty = comboBox1.SelectedItem.ToString();
+                string MyProperty = PropertiesNames[comboBoxClass.SelectedIndex].ToString();
                 PropertyInfo a = MyType.GetProperty(MyProperty);
                 a.SetValue(mainFactory.RequestedFactory, textBoxSize.Text, null);
             }
@@ -239,7 +253,7 @@ namespace Serialization
         }
         public string[] GetNameOfFields()
         {
-            string[] FieldsInfo = new string[]{ "Author", "AlbumType", "HardLevel", "SizeFIelds"};
+            string[] FieldsInfo = new string[]{ "Author", "AlbumType", "Resolution", "HardLevel", "SizeFields", "SizeFields", "Firm"};
             return FieldsInfo;
         }
     }

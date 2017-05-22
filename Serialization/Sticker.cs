@@ -11,10 +11,7 @@ namespace Serialization
     {
         public Sticker() : base()
         {
-        }
-        public Sticker(string Size)
-        {
-            this.Size = Size;
+
         }
     }
 }

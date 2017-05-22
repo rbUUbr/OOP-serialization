@@ -1,0 +1,7 @@
+D:\Serialization\AdditionalClasses\obj\Debug\AdditionalClasses.csprojResolveAssemblyReference.cache
+D:\Serialization\AdditionalClasses\bin\Debug\AdditionalClasses.dll
+D:\Serialization\AdditionalClasses\bin\Debug\AdditionalClasses.pdb
+D:\Serialization\AdditionalClasses\bin\Debug\Serialization.exe
+D:\Serialization\AdditionalClasses\bin\Debug\Serialization.pdb
+D:\Serialization\AdditionalClasses\obj\Debug\AdditionalClasses.dll
+D:\Serialization\AdditionalClasses\obj\Debug\AdditionalClasses.pdb
