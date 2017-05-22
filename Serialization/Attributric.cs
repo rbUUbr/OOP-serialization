@@ -9,7 +9,7 @@ namespace Serialization
     public abstract class Attributric : Item
     {
         private string size;
-        [XmlAttribute("Size")]
+        [XmlElement("Size")]
         public string Size
         {
             get

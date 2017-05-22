@@ -48,6 +48,10 @@ namespace Serialization
             }
 
         }
+        public Type ReturnTypeOfObject(Item requestedFactory)
+        {
+            return requestedFactory.GetType();
+        }
     }
 
 

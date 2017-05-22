@@ -10,7 +10,19 @@ namespace Serialization
     [Serializable]
     public class Book : Item
     {
-        public enum GenreOfItem { adventure, story, roman, poetry, drama, scientific, fantasy };
+        private string author;
+        [XmlElement("Author")]
+        public string Author
+        {
+            get
+            {
+                return author;
+            }
+            set
+            {
+                author = value;
+            }
+        }
         public Book() : base()
         {
 

@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Serialization
+namespace AdditionalClasses
 {
-    [Serializable]
-    public class TShirt : Attributric
+    public class Class1
     {
-        public TShirt() : base()
-        {
-
-        }
     }
 }

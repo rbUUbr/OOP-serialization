@@ -9,9 +9,12 @@ namespace Serialization
     [Serializable]
     public class Sticker : Attributric
     {
-        public enum SizeOfItem {   little, normal, big, verybig  }
         public Sticker() : base()
         {
+        }
+        public Sticker(string Size)
+        {
+            this.Size = Size;
         }
     }
 }

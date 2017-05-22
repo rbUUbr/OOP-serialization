@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -18,7 +19,6 @@ namespace Serialization
         [XmlArray("itemsList")]
         private List<Item> itemsList;
         MainFactory mainFactory = new MainFactory();
-        TShirt ts = new TShirt();
         public int CurrentIndex;
         private Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
         public Form1()
@@ -30,8 +30,10 @@ namespace Serialization
             {
                 comboBoxClass.Items.Add(f.Key);
             }
-            
-        }
+            string[] PropertiesNames = GetNameOfFields();
+            comboBox1.Items.Add(PropertiesNames);
+
+    }
 
         public void ChangeVisible(bool value)
         {
@@ -56,7 +58,6 @@ namespace Serialization
         }
         public List<Item> Deserialize(Type[] ItemsTypes, string FileName)
         {
-      
             XmlSerializer serializer = new XmlSerializer(typeof(List<Item>), ItemsTypes);
             XmlReader reader = XmlReader.Create(FileName);
             return (List<Item>)serializer.Deserialize(reader);
@@ -65,7 +66,10 @@ namespace Serialization
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 string FileName = SaveToFile();
+            if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 Serialize(ItemsTypes, this.itemsList, FileName);
+            }
             
         }
         public void SetValues(dynamic MyItem)
@@ -113,10 +117,6 @@ namespace Serialization
             }
             MyItem.PublishDate = dateTimePickerPublishDate.Value;
             MyItem.Genre = textBoxGenre.Text;
-            if (textBoxSize.Visible == true)
-            {
-                MyItem.Size = textBoxSize.Text;
-            }
 
         }
         public string ChooseFile()
@@ -128,7 +128,7 @@ namespace Serialization
             else return null;
 
         }
-        public void SetValuesToFields(Item MyItem)
+        public void SetValuesToFields(dynamic MyItem)
         {
             textBoxCost.Text = MyItem.Cost.ToString();
             textBoxCount.Text = MyItem.Count.ToString();
@@ -138,11 +138,10 @@ namespace Serialization
             dateTimePickerPublishDate.Value = MyItem.PublishDate;
             textBoxYearOfCreate.Text = MyItem.YearOfCreate.ToString();
             comboBoxClass.SelectedIndex = comboBoxClass.Items.IndexOf(MyItem.GetType().Name);
-            if (textBoxSize.Visible == true)
-            {
-                Attributric a = (Attributric)MyItem;
-                textBoxSize.Text = a.Size;
-            }
+            Type MyType = mainFactory.ReturnTypeOfObject(MyItem);
+            string MyProperty = comboBox1.SelectedItem.ToString();
+            PropertyInfo a = MyType.GetProperty(MyProperty);
+            textBoxSize.Text = a.GetValue(MyItem, null).ToString();
 
         }
         private void listBoxOfElements_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,14 +154,7 @@ namespace Serialization
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((comboBoxClass.SelectedItem.ToString() == "TShirt") || (comboBoxClass.SelectedItem.ToString() == "Sticker"))
-            {
-                ChangeVisible(true);
-            }
-            else
-            {
-                ChangeVisible(false);
-            }
+            comboBox1.SelectedIndex = comboBoxClass.SelectedIndex;
         }
         public string SaveToFile()
         {
@@ -178,19 +170,22 @@ namespace Serialization
         private void десериализоватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string FileName = ChooseFile();
-            itemsList.Clear();
-            listBoxOfElements.Items.Clear();
-            itemsList = Deserialize(ItemsTypes, FileName);
-            for (int i = 0; i < itemsList.Count; i++)
+            if (FileName != "")
             {
-                try
+                itemsList.Clear();
+                listBoxOfElements.Items.Clear();
+                itemsList = Deserialize(ItemsTypes, FileName);
+                for (int i = 0; i < itemsList.Count; i++)
                 {
-                    listBoxOfElements.Items.Add(itemsList[i].Name);
-                   
-                }
-                catch
-                {
-                    MessageBox.Show("Error!");
+                    try
+                    {
+                        listBoxOfElements.Items.Add(itemsList[i].Name);
+
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error!");
+                    }
                 }
             }
         }
@@ -203,11 +198,18 @@ namespace Serialization
                 SetValues(mainFactory.RequestedFactory);
                 itemsList.Add(mainFactory.RequestedFactory);
                 listBoxOfElements.Items.Add(mainFactory.RequestedFactory.Name);
+                Type MyType = mainFactory.ReturnTypeOfObject(mainFactory.RequestedFactory);
+                string MyProperty = comboBox1.SelectedItem.ToString();
+                PropertyInfo a = MyType.GetProperty(MyProperty);
+                a.SetValue(mainFactory.RequestedFactory, textBoxSize.Text, null);
             }
             catch
             {
                 MessageBox.Show("Выберите класс создаваемого объекта!");
             }
+
+
+
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -216,11 +218,29 @@ namespace Serialization
             {
                 SetValues(itemsList.ElementAt(CurrentIndex));
                 listBoxOfElements.Items[CurrentIndex] = itemsList.ElementAt(CurrentIndex).Name;
+
             }
             catch
             {
                 MessageBox.Show("Эта функция предназначена для редактирования уже существующих элементов!");
             }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxOfElements.SelectedIndex < 0) return;
+            itemsList.RemoveAt(CurrentIndex);
+            listBoxOfElements.Items.RemoveAt(CurrentIndex);
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+        public string[] GetNameOfFields()
+        {
+            string[] FieldsInfo = new string[]{ "Author", "AlbumType", "HardLevel", "SizeFIelds"};
+            return FieldsInfo;
         }
     }
 }

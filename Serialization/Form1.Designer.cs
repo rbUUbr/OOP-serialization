@@ -55,6 +55,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.textBoxSize = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,6 +205,7 @@
             this.buttonDelete.TabIndex = 16;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // dateTimePickerPublishDate
             // 
@@ -281,13 +283,30 @@
             this.textBoxSize.Name = "textBoxSize";
             this.textBoxSize.Size = new System.Drawing.Size(100, 20);
             this.textBoxSize.TabIndex = 28;
-            this.textBoxSize.Visible = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Author",
+            "AlbumType",
+            "Resolution",
+            "HardLevel",
+            "Size",
+            "Size"});
+            this.comboBox1.Location = new System.Drawing.Point(510, 86);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(97, 21);
+            this.comboBox1.TabIndex = 29;
+            this.comboBox1.Visible = false;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 393);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBoxSize);
             this.Controls.Add(this.textBoxGenre);
             this.Controls.Add(this.buttonSave);
@@ -313,7 +332,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "OOPThird";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -350,6 +369,7 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxGenre;
         private System.Windows.Forms.TextBox textBoxSize;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

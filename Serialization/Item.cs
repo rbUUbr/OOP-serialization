@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using static System.Windows.Forms.ComboBox;
 namespace Serialization
 {
     public abstract class Item
@@ -16,10 +15,8 @@ namespace Serialization
         private string genre;
         private int yearOfCreate;
         private DateTime publishDate;
-        public string InstanceID { get; set; }
         public Item()
         {
-            InstanceID = Guid.NewGuid().ToString();
         }
         public string Name
         {
