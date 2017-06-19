@@ -7,3 +7,5 @@ D:\Serialization\Serialization\obj\Debug\Serialization.csproj.GenerateResource.C
 D:\Serialization\Serialization\obj\Debug\Serialization.exe
 D:\Serialization\Serialization\obj\Debug\Serialization.pdb
 D:\Serialization\Serialization\obj\Debug\Serialization.Form1.resources
+D:\Serialization\Serialization\bin\Debug\Newtonsoft.Json.dll
+D:\Serialization\Serialization\bin\Debug\Newtonsoft.Json.xml

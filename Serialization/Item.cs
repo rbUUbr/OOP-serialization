@@ -4,16 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
+
 namespace Serialization
 {
+    [DataContract]
     public abstract class Item
     {
+        [DataMember]
         private string name;
+        [DataMember]
         private float cost;
+        [DataMember]
         private int quality;
+        [DataMember]
         private int count;
+        [DataMember]
         private string genre;
+        [DataMember]
         private int yearOfCreate;
+        [DataMember]
         private DateTime publishDate;
         public Item()
         {

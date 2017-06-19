@@ -17,62 +17,29 @@ namespace Serialization
     public partial class Form1 : Form
     {
         [XmlArray("itemsList")]
-        private List<Item> itemsList;
-        MainFactory mainFactory = new MainFactory();
-        Item plugin;
+        private ApiClass api = new ApiClass();        
         public int CurrentIndex;
-        private Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
+        private List<Control> textBoxes;
+        Type[] ItemsTypes = { typeof(VideoFilm), typeof(MusicDisc), typeof(Game), typeof(Book), typeof(TShirt), typeof(Sticker) };
         public Form1()
         {
-            this.itemsList = new List<Item>();
-            InitializeComponent();
-            Assembly asm = Assembly.LoadFile(@"D:\Serialization\AdditionalClasses\bin\Debug\AdditionalClasses.dll");
-            foreach (Type t in asm.GetExportedTypes())
-            {
-                if (typeof(Item).IsAssignableFrom(t))
-                {
-                    plugin = (Item)asm.CreateInstance(t.FullName);
-                    mainFactory.FactoryDictionary.Add(plugin.GetType().Name, plugin);
-                    Array.Resize(ref this.ItemsTypes, this.ItemsTypes.Length + 1);
-                    this.ItemsTypes[this.ItemsTypes.Length - 1] = plugin.GetType();
-                }
-            }
-
-            foreach (KeyValuePair<string, object> f in mainFactory.FactoryDictionary)
-            {
-                comboBoxClass.Items.Add(f.Key);
-            }
             string[] PropertiesNames = GetNameOfFields();
-            comboBox1.Items.Add(PropertiesNames);
+            InitializeComponent();
+            this.api.InitializeObjects(ref ItemsTypes);
+            comboBox1.Items.Clear();
+            foreach (string element in PropertiesNames)
+            {
+                comboBox1.Items.Add(element);
+            }
 
-    }
+        }
+
+
 
         public void ChangeVisible(bool value)
         {
             labelSize.Visible = value;
             textBoxSize.Visible = value;
-        }
-        public static void Serialize(Type[] ItemsTypes, List<Item> itemsList, string FileName)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Item>), ItemsTypes);
-            try
-            {
-                using (FileStream fs = new FileStream(FileName, FileMode.Truncate))
-                {
-                    serializer.Serialize(fs, itemsList);
-                    fs.Close();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Путь не может быть пустым!");
-            }
-        }
-        public List<Item> Deserialize(Type[] ItemsTypes, string FileName)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Item>), ItemsTypes);
-            XmlReader reader = XmlReader.Create(FileName);
-            return (List<Item>)serializer.Deserialize(reader);
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,7 +47,7 @@ namespace Serialization
                 string FileName = SaveToFile();
             if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Serialize(ItemsTypes, this.itemsList, FileName);
+                this.api.Serialize(ItemsTypes, FileName);
             }
             
         }
@@ -150,7 +117,7 @@ namespace Serialization
             dateTimePickerPublishDate.Value = MyItem.PublishDate;
             textBoxYearOfCreate.Text = MyItem.YearOfCreate.ToString();
             comboBoxClass.SelectedIndex = comboBoxClass.Items.IndexOf(MyItem.GetType().Name);
-            Type MyType = mainFactory.ReturnTypeOfObject(MyItem);
+            Type MyType = api.MainFactory.ReturnTypeOfObject(MyItem);
             string[] PropertiesNames = GetNameOfFields();
             string MyProperty = PropertiesNames[comboBox1.SelectedIndex].ToString();
             PropertyInfo a = MyType.GetProperty(MyProperty);
@@ -161,8 +128,8 @@ namespace Serialization
         {
             if (listBoxOfElements.SelectedIndex < 0) return;
             CurrentIndex = listBoxOfElements.SelectedIndex;
-            Item SettedItem = itemsList.ElementAt(listBoxOfElements.SelectedIndex);
-            SetValuesToFields(SettedItem);
+            Item SettedItem = this.api.ItemsList.ElementAt(listBoxOfElements.SelectedIndex);
+            SetValuesToFields(this.api.ItemsList.ElementAt(listBoxOfElements.SelectedIndex));
         }
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e)
@@ -185,14 +152,14 @@ namespace Serialization
             string FileName = ChooseFile();
             if (FileName != "")
             {
-                itemsList.Clear();
+                this.api.ItemsList.Clear();
                 listBoxOfElements.Items.Clear();
-                itemsList = Deserialize(ItemsTypes, FileName);
-                for (int i = 0; i < itemsList.Count; i++)
+                this.api.ItemsList = this.api.Deserialize(ItemsTypes, FileName);
+                for (int i = 0; i < this.api.ItemsList.Count; i++)
                 {
                     try
                     {
-                        listBoxOfElements.Items.Add(itemsList[i].Name);
+                        listBoxOfElements.Items.Add(this.api.ItemsList[i].Name);
 
                     }
                     catch
@@ -208,14 +175,14 @@ namespace Serialization
             try
             {
                 string[] PropertiesNames = GetNameOfFields();
-                mainFactory.RequestedFactory = mainFactory.CheckFactory(comboBoxClass.SelectedItem.ToString());
-                SetValues(mainFactory.RequestedFactory);
-                itemsList.Add(mainFactory.RequestedFactory);
-                listBoxOfElements.Items.Add(mainFactory.RequestedFactory.Name);
-                Type MyType = mainFactory.ReturnTypeOfObject(mainFactory.RequestedFactory);
+                this.api.MainFactory.RequestedFactory = this.api.MainFactory.CheckFactory(comboBoxClass.SelectedItem.ToString());
+                SetValues(this.api.MainFactory.RequestedFactory);
+                this.api.ItemsList.Add(this.api.MainFactory.RequestedFactory);
+                listBoxOfElements.Items.Add(this.api.MainFactory.RequestedFactory.Name);
+                Type MyType = this.api.MainFactory.ReturnTypeOfObject(this.api.MainFactory.RequestedFactory);
                 string MyProperty = PropertiesNames[comboBoxClass.SelectedIndex].ToString();
                 PropertyInfo a = MyType.GetProperty(MyProperty);
-                a.SetValue(mainFactory.RequestedFactory, textBoxSize.Text, null);
+                a.SetValue(this.api.MainFactory.RequestedFactory, textBoxSize.Text, null);
             }
             catch
             {
@@ -230,8 +197,8 @@ namespace Serialization
         {
             try
             {
-                SetValues(itemsList.ElementAt(CurrentIndex));
-                listBoxOfElements.Items[CurrentIndex] = itemsList.ElementAt(CurrentIndex).Name;
+                SetValues(this.api.ItemsList.ElementAt(CurrentIndex));
+                listBoxOfElements.Items[CurrentIndex] = this.api.ItemsList.ElementAt(CurrentIndex).Name;
 
             }
             catch
@@ -243,7 +210,7 @@ namespace Serialization
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (listBoxOfElements.SelectedIndex < 0) return;
-            itemsList.RemoveAt(CurrentIndex);
+            this.api.ItemsList.RemoveAt(CurrentIndex);
             listBoxOfElements.Items.RemoveAt(CurrentIndex);
 
         }
@@ -253,8 +220,21 @@ namespace Serialization
         }
         public string[] GetNameOfFields()
         {
-            string[] FieldsInfo = new string[]{ "Author", "AlbumType", "Resolution", "HardLevel", "SizeFields", "SizeFields", "Firm"};
+            string[] FieldsInfo = new string[]{ "Author", "AlbumType", "Resolution", "HardLevel", "SizeFields", "SizeFields", "Material", "Firm" };
             return FieldsInfo;
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            foreach (KeyValuePair<string, object> f in api.MainFactory.FactoryDictionary)
+            {
+                comboBoxClass.Items.Add(f.Key);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.textBoxes = this.api.GetTextBoxes(this);
         }
     }
 }

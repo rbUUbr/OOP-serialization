@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdditionalClasses", "Additi
 		{34D02226-8428-4317-AB40-AF06E19CF886} = {34D02226-8428-4317-AB40-AF06E19CF886}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONTransformer", "JSONTransformer\JSONTransformer.csproj", "{11A8ED6F-D27B-43A6-A565-10669F614641}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{775D92A1-2248-4000-A3CA-5695C061BD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{775D92A1-2248-4000-A3CA-5695C061BD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{775D92A1-2248-4000-A3CA-5695C061BD7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A8ED6F-D27B-43A6-A565-10669F614641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A8ED6F-D27B-43A6-A565-10669F614641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A8ED6F-D27B-43A6-A565-10669F614641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A8ED6F-D27B-43A6-A565-10669F614641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
