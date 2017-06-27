@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Linq;
 using static System.Object;
-using System.Web.Extensions;
-
+using System.Xml;
+using static Newtonsoft.Json.JsonConvert;
+using System.Web;
 namespace JSONTransformer
 {
     public class JSONTransformer
@@ -22,32 +23,17 @@ namespace JSONTransformer
         }
 
 
-
         public void XmlToJson(string fileInPath, string fileOutPath)
         {
             string xmlContent = File.ReadAllText(fileInPath);
-            File.WriteAllText(fileOutPath, new  JavaScriptSerializer().Serialize(GetXmlValues(XElement.Parse(xmlContent))));
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(File.ReadAllText(fileInPath));
+            string jsonText = Newtonsoft.Json.JsonConvert.SerializeXmlNode(doc);
+            File.WriteAllText(fileOutPath, jsonText);
         }
-
-        private Dictionary<string, object> GetXmlValues(XElement xml)
+        public void Deserialize()
         {
-            var attr = xml.Attributes().ToDictionary(
-                item => item.Name.LocalName,
-                item => (object)item.Value
-            );
 
-            if (xml.HasElements)
-            {
-                attr.Add("_value", xml.Elements().Select(
-                    e => GetXmlValues(e)
-                ));
-            }
-            else if (!xml.IsEmpty)
-            {
-                attr.Add("_value", xml.Value);
-            }
-
-            return new Dictionary<string, object> { { xml.Name.LocalName, attr } };
         }
 
     }

@@ -11,7 +11,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
-
+using Serialization.Properties;
 namespace Serialization
 {
     public partial class Form1 : Form
@@ -48,54 +48,29 @@ namespace Serialization
             if (openFileDialogSerialization.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.api.Serialize(ItemsTypes, FileName);
+          //     JSONTransformer.JSONTransformer myTransformer = JSONTransformer.JSONTransformer.GetInstance();
+            //    myTransformer.XmlToJson(FileName, FileName);
             }
-            
+        }
+
+        public bool CheckCorrectness(dynamic MyItem)
+        {
+            MyItem.Name = textBoxName.Text;
+            MyItem.Quality = Convert.ToInt32(textBoxQuality.Text);
+            return true;
         }
         public void SetValues(dynamic MyItem)
         {
+            FormVerificationer formChecker = new FormVerificationer();
             MyItem.Name = textBoxName.Text;
-            try
-            {
-                MyItem.Quality = Convert.ToInt32(textBoxQuality.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'качество'");
-            }
-            try
-            {
-                MyItem.Cost = (float)Convert.ToDouble(textBoxCost.Text) ;
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'цена'");
-            }
-            try
-            {
-                MyItem.Count = Convert.ToInt32(textBoxCount.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'количество'");
-            }
-            try
-            {
-                MyItem.YearOfCreate = Convert.ToInt32(textBoxYearOfCreate.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'год создания'");
-            }
-            try
-            {
-                MyItem.Name = textBoxName.Text;
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка! Неудовлетворительное значение в поле 'имя'");
-            }
+            MyItem.Quality = formChecker.ConvertIntValues(textBoxQuality);
+            MyItem.Cost = formChecker.ConvertFloatValues(textBoxCost);
+            MyItem.Count = formChecker.ConvertIntValues(textBoxCount);
+            MyItem.YearOfCreate = formChecker.ConvertIntValues(textBoxYearOfCreate);
+            MyItem.Name = textBoxName.Text;
             MyItem.PublishDate = dateTimePickerPublishDate.Value;
             MyItem.Genre = textBoxGenre.Text;
+            formChecker.OutputErrorMessage();
 
         }
         public string ChooseFile()

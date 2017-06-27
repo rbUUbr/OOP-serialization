@@ -113,6 +113,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(100, 20);
             this.textBoxName.TabIndex = 2;
+            this.textBoxName.Tag = "Имя";
             // 
             // textBoxQuality
             // 
@@ -120,6 +121,7 @@
             this.textBoxQuality.Name = "textBoxQuality";
             this.textBoxQuality.Size = new System.Drawing.Size(100, 20);
             this.textBoxQuality.TabIndex = 3;
+            this.textBoxQuality.Tag = "Качество";
             // 
             // textBoxCost
             // 
@@ -127,6 +129,7 @@
             this.textBoxCost.Name = "textBoxCost";
             this.textBoxCost.Size = new System.Drawing.Size(100, 20);
             this.textBoxCost.TabIndex = 5;
+            this.textBoxCost.Tag = "Стоимость";
             // 
             // textBoxCount
             // 
@@ -134,6 +137,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(100, 20);
             this.textBoxCount.TabIndex = 6;
+            this.textBoxCount.Tag = "Количество";
             // 
             // textBoxYearOfCreate
             // 
@@ -141,6 +145,7 @@
             this.textBoxYearOfCreate.Name = "textBoxYearOfCreate";
             this.textBoxYearOfCreate.Size = new System.Drawing.Size(100, 20);
             this.textBoxYearOfCreate.TabIndex = 7;
+            this.textBoxYearOfCreate.Tag = "Год создания";
             // 
             // labelName
             // 
@@ -213,6 +218,7 @@
             this.dateTimePickerPublishDate.Name = "dateTimePickerPublishDate";
             this.dateTimePickerPublishDate.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerPublishDate.TabIndex = 17;
+            this.dateTimePickerPublishDate.Tag = "Дата публикации";
             // 
             // labelЗPublishDate
             // 
@@ -283,6 +289,7 @@
             this.textBoxSize.Name = "textBoxSize";
             this.textBoxSize.Size = new System.Drawing.Size(100, 20);
             this.textBoxSize.TabIndex = 28;
+            this.textBoxSize.Tag = "Размер";
             // 
             // comboBox1
             // 

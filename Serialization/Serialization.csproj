@@ -73,6 +73,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVerificationer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InitializeInterface.cs" />
     <Compile Include="Item.cs" />
@@ -111,6 +112,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSONTransformer\JSONTransformer.csproj">
+      <Project>{11a8ed6f-d27b-43a6-a565-10669f614641}</Project>
+      <Name>JSONTransformer</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

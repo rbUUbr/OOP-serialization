@@ -1,0 +1,14 @@
+D:\Serialization\JSONTransformer\bin\Debug\JSONTransformer.dll.config
+D:\Serialization\JSONTransformer\bin\Debug\JSONTransformer.dll
+D:\Serialization\JSONTransformer\bin\Debug\JSONTransformer.pdb
+D:\Serialization\JSONTransformer\bin\Debug\Newtonsoft.Json.dll
+D:\Serialization\JSONTransformer\bin\Debug\System.Net.Http.Formatting.dll
+D:\Serialization\JSONTransformer\bin\Debug\Vse.Web.Serialization.dll
+D:\Serialization\JSONTransformer\bin\Debug\WebApiContrib.Formatting.JavaScriptSerializer.dll
+D:\Serialization\JSONTransformer\bin\Debug\Newtonsoft.Json.xml
+D:\Serialization\JSONTransformer\bin\Debug\System.Net.Http.Formatting.xml
+D:\Serialization\JSONTransformer\bin\Debug\Vse.Web.Serialization.pdb
+D:\Serialization\JSONTransformer\obj\Debug\JSONTransformer.Properties.Resources.resources
+D:\Serialization\JSONTransformer\obj\Debug\JSONTransformator.csproj.GenerateResource.Cache
+D:\Serialization\JSONTransformer\obj\Debug\JSONTransformer.dll
+D:\Serialization\JSONTransformer\obj\Debug\JSONTransformer.pdb

@@ -9,3 +9,8 @@ D:\Serialization\Serialization\obj\Debug\Serialization.pdb
 D:\Serialization\Serialization\obj\Debug\Serialization.Form1.resources
 D:\Serialization\Serialization\bin\Debug\Newtonsoft.Json.dll
 D:\Serialization\Serialization\bin\Debug\Newtonsoft.Json.xml
+D:\Serialization\Serialization\bin\Debug\System.Net.Http.Formatting.dll
+D:\Serialization\Serialization\bin\Debug\Vse.Web.Serialization.dll
+D:\Serialization\Serialization\bin\Debug\WebApiContrib.Formatting.JavaScriptSerializer.dll
+D:\Serialization\Serialization\bin\Debug\System.Net.Http.Formatting.xml
+D:\Serialization\Serialization\bin\Debug\Vse.Web.Serialization.pdb

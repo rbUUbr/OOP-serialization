@@ -7,3 +7,4 @@ D:\Serialization\AdditionalClasses\obj\Debug\AdditionalClasses.dll
 D:\Serialization\AdditionalClasses\obj\Debug\AdditionalClasses.pdb
 D:\Serialization\Serialization\bin\Debug\AdditionalClasses.dll
 D:\Serialization\Serialization\bin\Debug\AdditionalClasses.pdb
+D:\Serialization\Serialization\bin\Debug\AdditionalClasses.dll.config
